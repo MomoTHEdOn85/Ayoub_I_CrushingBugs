@@ -1,13 +1,16 @@
 (() => {
 	 // make the connections to the elements on the page
 	 // that we want the user to interact with
-	 const theButtons = document.querySelectorAll('#buttonHolder img'),
-	       PuzzlePieces = document.querySelectorAll('.puzzle-pieces *'),
-				 dropZone = document.querySelectorAll('.drop-zone'),
-	       theGameBoard = document.querySelector('.puzzle-board');
+	 let theButtons = document.querySelectorAll('#buttonHolder img'),
+	     PuzzlePieces = document.querySelectorAll('.puzzle-pieces *'),
+			 dropZone = document.querySelectorAll('.drop-zone'),
+			 theGameBoard = document.querySelector('.puzzle-board');
 
 
-	 function changeBgImg () {
+	 const puzPaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
+
+
+	 function changeImgSet () {
 		 //debugger; //pause our code execution at this point
 		 //let key = this.dataset.bgref;
 		 //console.log(key);
@@ -17,7 +20,12 @@
 		 // `` => this is a js template string. You can use it to write a bit of
 		 //-- inline js which will be interpreted at runtime.
 		 // Search for MDN js Template String
+
+		 puzPaths.forEach((puzzle, index) => {
+			 PuzzlePieces[index].src = `images/${puzzle + this.dataset.bgref}.jpg`;
+		 })
 	 }
+
 
 	 function startDrag(event) {
 		 // save a reference to the element we're dragging
@@ -41,7 +49,7 @@
 	 }
 
    // these are the "triggers" we want the user to use to fire off events
-	 theButtons.forEach(imgBtn => imgBtn.addEventListener('click', changeBgImg));
+	 theButtons.forEach(imgBtn => imgBtn.addEventListener('click', changeImgSet));
 	 PuzzlePieces.forEach(puzzle => puzzle.addEventListener('dragstart', startDrag));
 	 dropZone.forEach(zone => {
 		 zone.addEventListener('dragover', draggedOver);
