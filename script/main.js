@@ -8,6 +8,7 @@
 
 
 	 const puzPaths = ["topLeft", "topRight", "bottomLeft", "bottomRight"];
+	 const puz = document.querySelectorAll('.puzzle-image');
 
 
 	 function changeImgSet () {
@@ -24,6 +25,8 @@
 		 puzPaths.forEach((puzzle, index) => {
 			 PuzzlePieces[index].src = `images/${puzzle + this.dataset.bgref}.jpg`;
 		 })
+		 PuzzlePieces.appendChild(puzPaths);
+
 	 }
 
 
@@ -34,7 +37,6 @@
 
 	 function draggedOver () {
 		 event.preventDefault();
-
 	 }
 
 	 function dropped(event) {
@@ -45,8 +47,25 @@
 		 //--elements to a containing (parent) elements
 
 		 // the "this" keyword is a ref to the element you're dropping onto (or into)
-		 this.appendChild(document.querySelector(`#${currentstate}`));
+		 if(event.target.childNodes.length == 0) {
+			 this.appendChild(document.querySelector(`#${currentstate}`));
+		 }
+
 	 }
+
+	 //function checkEl () {
+		// let FirstEl = dropZone.firstChild;
+	//	 return FirstEl;
+	// }
+
+
+	 //function checkChild(PuzzlePieces, dropZone) {
+	//	 for(var i = 4; i < dropZone.length; i++) {
+		//	 var chek = dropZone[i];
+			// PuzzlePieces.appendChild(chek);
+			// console.log(chek);
+		// }
+ //}
 
    // these are the "triggers" we want the user to use to fire off events
 	 theButtons.forEach(imgBtn => imgBtn.addEventListener('click', changeImgSet));
@@ -55,5 +74,11 @@
 		 zone.addEventListener('dragover', draggedOver);
 		 zone.addEventListener('drop', dropped);
 	 });
+	 //dropZone.forEach(checkChild);
+
+
+	//while (checkEl == true) {
+		// dragZone.appendChild(dropZone);
+	 //}
 
 })();
