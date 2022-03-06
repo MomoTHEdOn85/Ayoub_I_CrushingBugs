@@ -47,16 +47,17 @@
 		 //--elements to a containing (parent) elements
 
 		 // the "this" keyword is a ref to the element you're dropping onto (or into)
-		 if(event.target.childNodes.length == 0) {
-			 this.appendChild(document.querySelector(`#${currentstate}`));
-		 }
+		 this.appendChild(document.querySelector(`#${currentstate}`));
+
+     //Positing one piece at a time
+		 event.target.appendChild(document.getElementById(currentstate));
 
 	 }
 
 	 //function checkEl () {
 		// let FirstEl = dropZone.firstChild;
 	//	 return FirstEl;
-	// }
+	 //}
 
 
 	 //function checkChild(PuzzlePieces, dropZone) {
@@ -65,7 +66,7 @@
 			// PuzzlePieces.appendChild(chek);
 			// console.log(chek);
 		// }
- //}
+
 
    // these are the "triggers" we want the user to use to fire off events
 	 theButtons.forEach(imgBtn => imgBtn.addEventListener('click', changeImgSet));
@@ -74,7 +75,7 @@
 		 zone.addEventListener('dragover', draggedOver);
 		 zone.addEventListener('drop', dropped);
 	 });
-	 //dropZone.forEach(checkChild);
+	// dropZone.forEach(checkChild);
 
 
 	//while (checkEl == true) {
